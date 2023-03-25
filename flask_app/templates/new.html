@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous" defer></script>
+    <title>Add Sighting</title>
+</head>
+<body style="background-color: rgb(26, 26, 26);">
+    <div class="text-light d-flex flex-column " style="width: 75%; padding: 20px; background-color: rgb(49, 49, 49); border-radius: 10px; margin: 50px auto;">
+        <div class="d-flex justify-content-between align-items-baseline">
+                <h1>Sasquatch Websighting</h1>
+            <div class="d-flex flex-column mt-3">
+                    <h2>{{user.first_name}} {{user.last_name}} </h2>
+                <div class="d-flex flex-column gap-2 mb-4 align-items-end">
+                    <a class="btn btn-primary w-100" href="/dashboard"> Dashboard</a>
+                    <a class="btn btn-primary w-75" href="/logout">Logout</a>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex flex-column align-items-center">
+            <h3>Report a Sighting</h3>
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <p class="text-danger"> {{message}} </p>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div>
+        <form action="/sighting/add" method="post">
+            <div class="d-flex justify-content-center gap-5">
+                <div class="d-flex" style="margin-right: 50px;">
+                    <div>
+                        <div class="mb-3">
+                            <label for="location" class="m-2">Location:</label>
+                                <input type="text" class="form-control" id="location" name="location">
+                        </div>
+                        <div class="mb-3">
+                            <label for="what_happened" class="m-2">What Happened:</label>
+                                <textarea class="form-control" name="what_happened" id="what_happened" cols="30" rows="3"></textarea>
+                        </div>
+                        <button class="btn btn-primary mt-2" style="color: white;" type="submit">Report</button>
+                    </div>
+                </div>
+                <div>
+                    <div class="mb-3">
+                        <label class="m-2" for="date_seen">Date of Siting:</label>
+                        <input class="form-control" type="date" name="date_seen" id="date_seen">
+                    </div>
+                    <div class="mb-3">
+                        <label for="num_seen" class="m-2"># of Sasquatches:</label>
+                            <input type="number" class="form-control" id="num_seen" name="num_seen">
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
